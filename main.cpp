@@ -17,9 +17,6 @@
 
 
 using namespace std;
-using std::cerr;
-using std::endl;
-using std::ofstream;
 
 template<class T>
 class LinearList
@@ -92,15 +89,26 @@ void LinearList<T>::Insert(int k,const T&x)
 template<class T>
 void LinearList<T>::Output()const
 {
-    ofstream outdata;
+    ofstream outdata ;
     int i;
-    outdata.open("test.txt");
+
+    outdata.open("test.txt"); // opens the test file
+    if( !outdata ) { // file couldn't be opened
+        cerr << "Error: file could not be opened" << endl;
+        exit(1);
+    }
     
     for (i=0; i<length; i++)
-        outdata << element[i] << '\t' ;
+        outdata << element[i] << '\t';
     outdata.close();
     
-
+    //original Output
+    
+    // if(isEmpty())
+    // cout<<"list is empty\n";
+    // else
+    // for(int i=0;i<length;i++)
+    // cout<<element[i]<<"\t";
 }
 
 
@@ -113,7 +121,6 @@ int main()
     
     LinearList <int> obj;
     
-
     
     obj.Insert(0,11);
     obj.Insert(1,10);
@@ -126,7 +133,7 @@ int main()
     obj.Insert(8,3);
     obj.Insert(9,2);
     obj.Insert(10,1);
-    
+  
     obj.Output();
     cout<<endl;
     
@@ -144,6 +151,7 @@ int main()
     cout<<endl;
     
     
+  
     
     return 0;
 }
